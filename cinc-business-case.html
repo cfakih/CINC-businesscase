@@ -1,0 +1,2361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CINC + Outreach Business Case</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #120044;
+            --primary-darker: #030268;
+            --primary: #3028a1;
+            --primary-light: #5951ff;
+            --primary-lighter: #7a7fff;
+            --primary-lightest: #b3b0ff;
+            --primary-pale: #cdcbff;
+            --primary-faint: #f0f0ff;
+            --neutral-warm: #dcd7bf;
+            --neutral-light: #edeadd;
+            --neutral-lighter: #f7f5f2;
+            --text-dark: #1f1f1f;
+            --text-medium: #575757;
+            --text-light: #9d9d9d;
+            --gray-light: #d7d7d7;
+            --gray-lighter: #e6e6e6;
+            --gray-lightest: #f2f2f2;
+            --white-soft: #fbfbfb;
+            --white: #ffffff;
+            --warning: #ff6b35;
+            --success: #4caf50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: var(--white);
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            background: var(--white);
+            border-radius: 12px;
+            padding: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 15px 20px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: var(--text-medium);
+            position: relative;
+            min-width: 120px;
+        }
+
+        .nav-tab.active {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 2px 8px rgba(48, 40, 161, 0.3);
+        }
+
+        .nav-tab:hover:not(.active) {
+            background: var(--primary-faint);
+            color: var(--primary);
+        }
+
+        .nav-tab .tab-number {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--gray-lighter);
+            color: var(--text-medium);
+            line-height: 24px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .nav-tab.active .tab-number {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--primary);
+        }
+
+        .card h2 {
+            color: var(--primary-dark);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: var(--primary);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            margin-top: 20px;
+        }
+
+        .card h4 {
+            color: var(--primary-dark);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            margin-top: 15px;
+        }
+
+        .card p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .card ul, .card ol {
+            margin: 15px 0 15px 20px;
+            line-height: 1.8;
+        }
+
+        .card li {
+            margin-bottom: 8px;
+        }
+
+        /* Highlight Boxes */
+        .highlight-box {
+            background: var(--primary-faint);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .highlight-box.warning {
+            background: #fff4e6;
+            border-left-color: #ff6b35;
+        }
+
+        .highlight-box.success {
+            background: #e8f5e9;
+            border-left-color: var(--success);
+        }
+
+        .highlight-box.problem {
+            background: #f8f9fa;
+            border-left: 4px solid var(--text-medium);
+            border: 1px solid var(--gray-lighter);
+        }
+
+        .highlight-box.impact {
+            background: #e3f2fd;
+            border-left: 4px solid var(--primary-light);
+        }
+
+        .highlight-box h3, .highlight-box h4 {
+            margin-top: 0;
+        }
+
+        /* Quote Boxes */
+        .quote-box {
+            background: var(--gray-lightest);
+            padding: 15px 20px;
+            border-left: 3px solid var(--primary);
+            border-radius: 6px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+
+        .quote-box .quote-author {
+            display: block;
+            margin-top: 8px;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        /* Stakeholder Accordion */
+        .stakeholder-accordion {
+            margin: 20px 0;
+        }
+
+        .stakeholder-item {
+            background: var(--white);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+
+        .stakeholder-header {
+            padding: 20px;
+            cursor: pointer;
+            background: var(--primary-faint);
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stakeholder-header:hover {
+            background: var(--primary-pale);
+        }
+
+        .stakeholder-header.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .stakeholder-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .stakeholder-role {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        .stakeholder-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .stakeholder-content.active {
+            padding: 20px;
+            max-height: 3000px;
+        }
+
+        .toggle-icon {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .comparison-table th {
+            background: var(--primary);
+            color: var(--white);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--gray-lighter);
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: var(--gray-lightest);
+        }
+
+        /* Impact Metrics */
+        .impact-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .impact-card {
+            background: linear-gradient(135deg, var(--primary-faint), var(--white));
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid var(--primary-pale);
+        }
+
+        .impact-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .impact-label {
+            font-size: 14px;
+            color: var(--text-medium);
+            font-weight: 500;
+        }
+
+        /* Resources Grid */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .resource-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-left: 3px solid var(--primary-light);
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .resource-card h4 {
+            color: var(--primary-dark);
+            margin-top: 0;
+        }
+
+        .resource-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .resource-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                margin-bottom: 5px;
+            }
+            
+            .impact-metrics {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CINC + OUTREACH BUSINESS CASE</h1>
+        <p>Sales Engagement Platform Evaluation | Version 4 | Based on 7 Comprehensive Evaluation Calls</p>
+    </div>
+
+    <div class="container">
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="executive">
+                <span class="tab-number">1</span>
+                Executive Summary
+            </div>
+            <div class="nav-tab" data-tab="stakeholders">
+                <span class="tab-number">2</span>
+                Stakeholders
+            </div>
+            <div class="nav-tab" data-tab="problems">
+                <span class="tab-number">3</span>
+                Main Problems
+            </div>
+            <div class="nav-tab" data-tab="solution">
+                <span class="tab-number">4</span>
+                Solution
+            </div>
+            <div class="nav-tab" data-tab="differentiators">
+                <span class="tab-number">5</span>
+                Outreach vs Salesloft
+            </div>
+            <div class="nav-tab" data-tab="roi">
+                <span class="tab-number">6</span>
+                ROI
+            </div>
+            <div class="nav-tab" data-tab="pricing">
+                <span class="tab-number">7</span>
+                Pricing
+            </div>
+            <div class="nav-tab" data-tab="implementation">
+                <span class="tab-number">8</span>
+                Implementation
+            </div>
+            <div class="nav-tab" data-tab="conclusion">
+                <span class="tab-number">9</span>
+                Conclusion
+            </div>
+            <div class="nav-tab" data-tab="resources">
+                <span class="tab-number">10</span>
+                Resources
+            </div>
+        </div>
+
+        <!-- Executive Summary Section -->
+        <div id="executive" class="content-section active">
+            <div class="card">
+                <h2>Executive Summary</h2>
+                <p>The Salesloft security breach in August prompted a comprehensive reevaluation of your sales engagement platform. While the integration has since been restored, the evaluation revealed fundamental gaps in Salesloft's ability to support CINC's growth trajectory across your entire 87-person revenue organization.</p>
+                
+                <div class="highlight-box">
+                    <h3>🎯 Critical Decision Timeline</h3>
+                    <p><strong>Decision needs to be made fast to allow time for implementation before holidays and Q1.</strong> Your busiest quarter requires a platform that's already live and optimized. The MVP launch approach protects revenue execution while enabling January 1 platform adoption.</p>
+                </div>
+
+                <h3>Current Reality Assessment</h3>
+                <p>After seven comprehensive demos across all business units, Crysta's assessment: <em>"We know what we want and we know what we need and we know what we have that isn't serving us."</em></p>
+                
+                <p><strong>Core Issue:</strong> Salesloft functions only as a sales engagement layer. While it can provide sequences for Client Services, it won't give them a unified experience to look at the whole journey from SDR-AE-AM in a unified, seamless, intuitive way. It provides no deal management, offers limited conversation intelligence, and lacks flexibility for your unique B2B motion (selling to real estate agents who operate like individual businesses). Meanwhile, your CS team is "embarrassingly" manual (Danielle's words), with account managers "pinging through dials all day long with not a lot of structure."</p>
+
+                <h3>8 Critical Gaps Leading to Organizational Inefficiencies</h3>
+                
+                <div class="highlight-box">
+                    <h4>1. Bidirectional Sync Failure</h4>
+                    <p>Manual imports "a few times a day" creating black holes in reporting and delayed sequence triggers. This architectural limitation forces reps to manually import Salesforce changes multiple times daily, leading to data inconsistencies and reporting gaps.</p>
+                    </div>
+                
+                <div class="highlight-box">
+                    <h4>2. Pipeline Management Paralysis</h4>
+                    <p>Hundreds of opportunities stuck in "evaluating" stage because managers must manually update opportunities one-by-one in Salesforce. This creates forecast accuracy issues beyond monthly view and forces leadership to avoid pipeline hygiene due to time cost.</p>
+                    </div>
+                
+                <div class="highlight-box">
+                    <h4>3. Client Services Operating in the Dark Age</h4>
+                    <p>60-person organization entirely manual - spreadsheets, template filling, zero automation. Implementation team manually filling Salesforce templates and copying Zoom AI summaries one-by-one. Account management team "pinging through dials all day long with not a lot of structure."</p>
+                    </div>
+                
+                <div class="highlight-box">
+                    <h4>4. Reporting & Analytics Deficiency</h4>
+                    <p>"Triangulating" Salesforce + Salesloft data with no drillable insights. Cannot answer which reps drive sequence results, which sequence steps generate bookings, or provide rep-to-rep performance comparison.</p>
+                    </div>
+
+                <div class="highlight-box">
+                    <h4>5. Conversation Intelligence Underutilization</h4>
+                    <p>80% of demos recorded but only "light coaching... skim transcripts." Missing keyword search across all calls, call libraries/playlists for training, and lifecycle visibility across departments.</p>
+                    </div>
+                    
+                <div class="highlight-box">
+                    <h4>6. Real Estate Agent Workflow Friction</h4>
+                    <p>Salesloft's rigid structure doesn't accommodate your unique B2B motion. Opportunity grid defaults to account name (irrelevant for CINC), forcing workflows that don't match your sales process.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>7. Lead Conversion Activity Loss</h4>
+                    <p>Historical activity disappears when lead converts to opportunity. AEs lack context, require re-discovery calls, leading to duplicated discovery efforts and slower deal velocity.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>8. Vendor Relationship Deterioration</h4>
+                    <p>Multiple unanswered inquiries about Drift cancellation and renewal terms. "Forced Rhythm on us... took months of tickets, never got on face-to-face call." Uncertainty around February renewal and inability to plan technology roadmap.</p>
+                </div>
+
+                <h3>Strategic Opportunity</h3>
+                <p>This isn't about escaping a failing vendor—it's about recognizing that CINC has outgrown what Salesloft can deliver. Your sales team needs true bidirectional sync, drillable reporting, and deal management. Your Client Services organization needs automation and structure.</p>
+            </div>
+        </div>
+
+        <!-- Stakeholders Section -->
+        <div id="stakeholders" class="content-section">
+            <div class="card">
+                <h2>Stakeholders</h2>
+                <p>Key decision makers and their specific pain points across the 87-person revenue organization.</p>
+                
+                <div class="stakeholder-accordion">
+                    <!-- Crysta Ostiguy -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">Crysta Ostiguy</div>
+                                <div class="stakeholder-role">Senior Director, Sales Development | Primary Project Lead</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Role & Goals</h4>
+                            <p>Leads 6 inbound SDRs (600+ calls/day collectively). Needs bidirectional Salesforce integration, inbound automation, and ease of use.</p>
+                            
+                            <h4>Current Process</h4>
+                            <p>Manual imports 2-3x daily, "black hole in reporting," automations constantly down.</p>
+                            
+                            <h4>What's Breaking/Limiting</h4>
+                            <p>Pipeline management is "a nightmare. Nothing gets done." Forced to manually update hundreds of opportunities one-by-one.</p>
+                            
+                            <div class="quote-box">
+                            "If anyone were to ask me just a simple answer to one question, do I believe Outreach is better than Salesloft, the answer would be yes."
+                                <span class="quote-author">— Crysta Ostiguy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shawn Craig -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">Shawn Craig</div>
+                                <div class="stakeholder-role">Senior Leadership (Sales) | Internal Advocate & VP Influencer</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Role & Goals</h4>
+                            <p>Key priorities: Deal-level activity aggregation, lead-to-opportunity activity preservation, pipeline management without manual updates, CI adoption for coaching at scale.</p>
+                            
+                            <h4>Current Process</h4>
+                            <p>Historical activity disappears when lead converts to opportunity. AEs lack context, require re-discovery calls.</p>
+                            
+                            <h4>What's Breaking/Limiting</h4>
+                            <p>"That's a huge problem with Salesloft that we could solve with Outreach." Crysta identified Shawn as "very persuasive" with VP - his advocacy is critical for budget.</p>
+                            
+                            <div class="quote-box">
+                            "Overall, I think your platform is far cleaner, far more intuitive and most importantly, far more customizable."
+                            <span class="quote-author">— Shawn Craig</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chelsea Scott -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">Chelsea Scott</div>
+                        <div class="stakeholder-role">Client Services Director (Implementation/Training)</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Role & Goals</h4>
+                            <p>Leads ~26 specialists managing ~47 accounts per rep (2-3 month lifecycle). Needs task-driven workflows, visibility into sales process, automated meeting coordination, AI summaries, and implementation support.</p>
+                            
+                            <h4>Current Process</h4>
+                            <p>Entirely manual - filling Salesforce templates, copying Zoom AI summaries one-by-one into success activities. No task-driven structure - "living in someone's brain."</p>
+                            
+                            <h4>What's Breaking/Limiting</h4>
+                            <p>No visibility into sales process without pinging directors. "We're very manual... truly grabbing those templates and filling in the blanks and manually sending them out. So there's no cadence really."</p>
+                            
+                            <div class="quote-box">
+                            "We're very manual... truly grabbing those templates and filling in the blanks and manually sending them out."
+                            <span class="quote-author">— Chelsea Scott</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Danielle Garrett -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">Danielle Garrett</div>
+                        <div class="stakeholder-role">Account Management Director (Post-Implementation)</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Role & Goals</h4>
+                            <p>Leads ~34 account managers + churn team managing ~160 accounts each. Needs automated renewal triggers, health scoring, at-risk identification, follow-up cadences, and context preservation.</p>
+                            
+                            <h4>Current Process</h4>
+                            <p>"Pinging through dials all day long with not a lot of structure," Excel spreadsheets for collaboration, then manual re-entry to Salesforce.</p>
+                            
+                            <h4>What's Breaking/Limiting</h4>
+                            <p>No automated renewal triggers (90 days before expiration), follow-ups tracked manually or forgotten, no real renewal pipeline visibility for David/leadership.</p>
+                            
+                            <div class="quote-box">
+                            "They're just pinging through dials all day long with not a lot of structure... It's just embarrassing to say out loud."
+                            <span class="quote-author">— Danielle Garrett</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mitchell Chapman -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">Mitchell Chapman</div>
+                                <div class="stakeholder-role">Demand Generation | Technical Evaluator & Reporting Lead</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Role & Goals</h4>
+                            <p>Needs drillable, clickable reporting, advanced task mapping for historical data preservation, meeting type and sequence attribution.</p>
+                            
+                            <h4>Current Process</h4>
+                            <p>"All of our analytics are task and events in Salesforce... it's a lot more manual than this."</p>
+                            
+                            <h4>What's Breaking/Limiting</h4>
+                            <p>Cannot answer which reps drive sequence results, which sequence steps generate bookings, or provide rep-to-rep performance comparison. 5-10 hours/week in manual reporting.</p>
+                            
+                            <div class="quote-box">
+                                "All of our analytics are task and events in Salesforce... it's a lot more manual than this."
+                            <span class="quote-author">— Mitchell Chapman</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- David Berrios -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">David Berrios</div>
+                                <div class="stakeholder-role">Director of Revenue Operations | Validator & Operations Lead</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Role & Goals</h4>
+                            <p>Needs renewal visibility and pipeline tracking, security validation, implementation timeline feasibility.</p>
+                            
+                            <h4>Current Process</h4>
+                            <p>Struggles with real-time renewal tracking, no visibility into renewal pipeline.</p>
+                            
+                            <h4>What's Breaking/Limiting</h4>
+                            <p>Budget finalization mid-November. Security cleared (Whistic review completed), but needs timeline feasibility validation.</p>
+                            
+                            <div class="quote-box">
+                                "Security cleared, timeline feasible"
+                                <span class="quote-author">— David Berrios</span>
+                            </div>
+                        </div>
+                        </div>
+
+                    <!-- JB -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">JB</div>
+                        <div class="stakeholder-role">Senior Director, Sales (Inbound AE Team)</div>
+                                </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Role & Goals</h4>
+                            <p>Leads 12 inbound AEs + counterpart Sean. Needs lifecycle visibility (BDR → AE → Client Services), deal management and pipeline health, call libraries for unified messaging.</p>
+                            
+                            <h4>Current Process</h4>
+                            <p>Refuses to watch hour-long demo reviews. "Watching a demo for an hour, I want to pull the remaining hair out."</p>
+                            
+                            <h4>What's Breaking/Limiting</h4>
+                            <p>No lifecycle visibility, limited conversation intelligence adoption, inconsistent messaging across lifecycle.</p>
+                            
+                            <div class="quote-box">
+                                "Watching a demo for an hour, I want to pull the remaining hair out."
+                                <span class="quote-author">— JB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chris Millsaps -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">Chris Millsaps</div>
+                                <div class="stakeholder-role">Outbound Team Lead</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Role & Goals</h4>
+                            <p>Leads 7 BDRs. Needs leading indicators dashboards, historical database re-engagement.</p>
+                            
+                            <h4>Current Process</h4>
+                            <p>Limited visibility into outbound performance, no systematic re-engagement of historical database.</p>
+                            
+                            <h4>What's Breaking/Limiting</h4>
+                            <p>No leading indicators dashboards, missed opportunities in historical database re-engagement.</p>
+                        </div>
+                        </div>
+
+                    <!-- Catherine Powell -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">Catherine Powell</div>
+                        <div class="stakeholder-role">Director, Account Executives (Outbound)</div>
+                        </div>
+                            <span class="toggle-icon">+</span>
+                    </div>
+                        <div class="stakeholder-content">
+                            <h4>Role & Goals</h4>
+                            <p>Leads 2 outbound AEs. Validated capabilities in Demo 3.</p>
+                            
+                            <h4>Current Process</h4>
+                            <p>Limited outbound AE team with specific needs for deal management and pipeline health.</p>
+                            
+                            <h4>What's Breaking/Limiting</h4>
+                            <p>Status: Validated capabilities in Demo 3. Needs same deal management and pipeline health as inbound team.</p>
+                </div>
+            </div>
+
+                    <!-- CRO -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">CRO</div>
+                                <div class="stakeholder-role">Executive Sponsor | Final Business Case Approval</div>
+        </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Role & Goals</h4>
+                            <p>Final business case approval. Influence path through Crysta, Shawn, and department directors.</p>
+                            
+                            <h4>Current Process</h4>
+                            <p>Awaiting formal proposal with ROI quantification tied to dollar amounts.</p>
+                            
+                            <h4>What's Breaking/Limiting</h4>
+                            <p>Decision driver: ROI quantification tied to dollar amounts. Needs comprehensive business case with clear value proposition.</p>
+                            
+                            <div class="quote-box">
+                                "Best way to get through to my CRO is to tie an ROI or dollar amount to it."
+                                <span class="quote-author">— Crysta Ostiguy</span>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+
+        <!-- Main Problems Section -->
+        <div id="problems" class="content-section">
+            <div class="card">
+                <h2>Main Problems</h2>
+                <p>Eight critical gaps identified across your 87-person revenue organization, each creating specific inefficiencies and missed opportunities.</p>
+                
+                <div class="stakeholder-accordion">
+                    <!-- Problem 1 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">1. Bidirectional Sync Failure</div>
+                                <div class="stakeholder-role">Architecture Limitation Creating Daily Friction</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Current State</h4>
+                            <p>Setup for one-way with manual imports "a few times a day." Reps manually import Salesforce changes multiple times daily, creating data inconsistencies and delayed sequence triggers.</p>
+                            
+                            <h4>Daily Impact</h4>
+                            <div class="highlight-box problem">
+                                <p><strong>Process:</strong> Log into Salesforce → manually check for new leads → Export new leads to CSV → Import CSV into Salesloft → Check if import worked → Manually add to sequences → Work tasks → Manually log activities back to Salesforce → Repeat 2-3x per day</p>
+                            </div>
+                            
+                            <h4>Quantified Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Time Cost:</strong> 20-30 minutes/day per rep × 13 SDR/BDRs = <strong>1,083 hours annually</strong></p>
+                                <p><strong>Annual Cost:</strong> $27,075 in wasted labor</p>
+                                <p><strong>Business Impact:</strong> Missed leads, data gaps, delayed sequence starts, reporting black holes</p>
+                            </div>
+                        
+                        <div class="quote-box">
+                            "Black hole in reporting... automations are down"
+                            <span class="quote-author">— Crysta Ostiguy</span>
+                            </div>
+                        </div>
+                        </div>
+                        
+                    <!-- Problem 2 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">2. Pipeline Management Paralysis</div>
+                                <div class="stakeholder-role">Hundreds of Opportunities Stuck in "Evaluating"</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Current State</h4>
+                            <p>Hundreds of opportunities stuck in "evaluating" stage because managers must manually update opportunities one-by-one in Salesforce. This creates forecast accuracy issues beyond monthly view.</p>
+                            
+                            <h4>Daily Impact</h4>
+                            <div class="highlight-box problem">
+                                <p><strong>Process:</strong> Run Salesforce report of opportunities in "evaluating" stage → Open each opportunity one-by-one → Review activity in Salesloft separately → Return to Salesforce to update stage → Navigate to next opportunity → Repeat for hundreds of opportunities</p>
+                            </div>
+                            
+                            <h4>Quantified Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Time Cost:</strong> 2 hours/week forced cleanup time per manager</p>
+                                <p><strong>Annual Cost:</strong> $42,000-48,000 (1,050-1,200 hours @ $40/hr)</p>
+                                <p><strong>Business Impact:</strong> Forecast accuracy suffers, pipeline hygiene avoided, no mass update capability, leadership lacks true pipeline visibility</p>
+                            </div>
+                            
+                            <div class="quote-box">
+                                "It's a nightmare. Nothing gets done."
+                                <span class="quote-author">— Crysta Ostiguy</span>
+                            </div>
+                            </div>
+                        </div>
+                        
+                    <!-- Problem 3 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">3. Client Services Operating in the Dark Age</div>
+                                <div class="stakeholder-role">60-Person Organization Entirely Manual</div>
+                        </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Implementation Team (Chelsea's Team)</h4>
+                            <div class="highlight-box problem">
+                                <p><strong>Current Process:</strong> Receive notification → Manually find Salesforce template → Copy customer information into template fields → Send email manually → Schedule follow-up call via Chili Piper → After call, listen to Zoom recording → Copy/paste AI summary into Salesforce success activity (one-by-one) → Manually write synopsis if AI insufficient → Check calendar tomorrow to remember what to do next</p>
+                    </div>
+
+                            <h4>Account Management Team (Danielle's Team)</h4>
+                            <div class="highlight-box problem">
+                                <p><strong>Current Process:</strong> Maintain Excel spreadsheet of renewal dates → Manually check spreadsheet for accounts 90 days from renewal → Ping through cold calls without prioritization (160 accounts per rep) → Track follow-ups in personal notes → Collaborate via shared Excel doc → Copy Excel data into Salesforce at month-end → When rep leaves, manually transfer Excel sheets and Salesforce context</p>
+                            </div>
+                            
+                            <h4>Quantified Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Implementation Team:</strong> 30 minutes/day per rep × 26 reps = $81,250 annually</p>
+                                <p><strong>Account Management:</strong> 45 minutes/day per rep × 34 reps = $159,375 annually</p>
+                                <p><strong>Total Annual Cost:</strong> $240,625 across both teams</p>
+                                <p><strong>Business Impact:</strong> Massive time waste, churn risk from missed follow-ups, renewal pipeline opacity, poor onboarding experience, no scalability</p>
+                            </div>
+                            
+                            <div class="quote-box">
+                                "They're just pinging through dials all day long with not a lot of structure... It's just embarrassing to say out loud."
+                                <span class="quote-author">— Danielle Garrett</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Problem 4 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">4. Reporting & Analytics Deficiency</div>
+                                <div class="stakeholder-role">"Triangulating" Data with No Drillable Insights</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Current State</h4>
+                            <p>"Triangulating" Salesforce + Salesloft data with no drillable insights. Cannot answer which reps drive sequence results, which sequence steps generate bookings, or provide rep-to-rep performance comparison.</p>
+                            
+                            <h4>Daily Impact</h4>
+                            <div class="highlight-box problem">
+                                <p><strong>Process:</strong> Pull Salesforce report (opportunities created) → Pull Salesloft report (sequence performance) → Export both to Excel → Manually join data on contact ID → Pivot tables to analyze which sequences drive results → Cannot drill into rep-level or step-level performance → Repeat weekly for different metrics</p>
+                            </div>
+                            
+                            <h4>Quantified Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Time Cost:</strong> 5-10 hours/week for Mitchell's team in manual reporting</p>
+                                <p><strong>Annual Cost:</strong> $10,500 (300 hours @ $35/hr)</p>
+                                <p><strong>Business Impact:</strong> No data-driven coaching decisions, unable to replicate top performer strategies, delayed insights</p>
+                            </div>
+                        
+                        <div class="quote-box">
+                                "All of our analytics are task and events in Salesforce... it's a lot more manual than this."
+                                <span class="quote-author">— Mitchell Chapman</span>
+                            </div>
+                        </div>
+                        </div>
+                        
+                    <!-- Problem 5 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">5. Conversation Intelligence Underutilization</div>
+                                <div class="stakeholder-role">80% Recorded, 5% Analyzed</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Current State</h4>
+                            <p>80% of demos recorded (sales) + all implementation calls, but only "light coaching... skim transcripts." Missing keyword search across all calls, call libraries/playlists for training, and lifecycle visibility.</p>
+                            
+                            <h4>Daily Impact</h4>
+                            <div class="highlight-box problem">
+                                <p><strong>Process:</strong> Demos recorded but rarely reviewed → To find competitor mention: manually skim transcripts one-by-one → Manager review: watch 60-minute demo (JB refuses) → Training: manually select calls to share → Implementation team has no visibility into sales calls → Account managers can't see why customer churned/returned</p>
+                            </div>
+                            
+                            <h4>Quantified Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Volume:</strong> 80% of demos recorded but only 5% analyzed</p>
+                                <p><strong>Business Impact:</strong> Recorded content underutilized for coaching, new rep ramp time longer than necessary, inconsistent messaging across lifecycle, no systematic wingback analysis</p>
+                            </div>
+                            
+                            <div class="quote-box">
+                                "Watching a demo for an hour, I want to pull the remaining hair out."
+                                <span class="quote-author">— JB</span>
+                            </div>
+                            </div>
+                        </div>
+                        
+                    <!-- Problem 6 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">6. Real Estate Agent Workflow Friction</div>
+                                <div class="stakeholder-role">Rigid Structure Doesn't Accommodate Unique Motion</div>
+                        </div>
+                            <span class="toggle-icon">+</span>
+                    </div>
+                        <div class="stakeholder-content">
+                            <h4>Current State</h4>
+                            <p>B2B selling to real estate agents (who operate like individual businesses). Salesloft's rigid structure doesn't accommodate your unique motion. Opportunity grid defaults to account name (irrelevant for CINC).</p>
+                            
+                            <h4>Daily Impact</h4>
+                            <div class="highlight-box problem">
+                                <p><strong>Process:</strong> Forced to use workflows that don't match sales process → Extra clicks to find relevant information → Custom workarounds that break over time → Opportunity grid shows account name instead of contact name, created date, stage</p>
+                            </div>
+                            
+                            <h4>Quantified Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Business Impact:</strong> Forced workflows that don't match sales process, extra clicks to find relevant information, custom workarounds that break over time</p>
+                            </div>
+                            
+                            <div class="quote-box">
+                                "The account name doesn't matter to us... I do not care about the account name."
+                                <span class="quote-author">— Crysta Ostiguy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Problem 7 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">7. Lead Conversion Activity Loss</div>
+                                <div class="stakeholder-role">Historical Activity Disappears at Conversion</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Current State</h4>
+                            <p>Historical activity disappears when lead converts to opportunity. AEs lack context, require re-discovery calls, leading to duplicated discovery efforts and slower deal velocity.</p>
+                            
+                            <h4>Daily Impact</h4>
+                            <div class="highlight-box problem">
+                                <p><strong>Process:</strong> Lead converts to opportunity → All historical activity disappears → AE starts with zero context → Must re-discover customer needs → Duplicated discovery efforts → Slower deal velocity → Poor buyer experience</p>
+                            </div>
+                            
+                            <h4>Quantified Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Business Impact:</strong> Duplicated discovery efforts, slower deal velocity, poor buyer experience, lost context from BDR to AE handoff</p>
+                            </div>
+                        
+                        <div class="quote-box">
+                                "That's a huge problem with Salesloft that we could solve with Outreach."
+                            <span class="quote-author">— Shawn Craig</span>
+                            </div>
+                        </div>
+                        </div>
+                        
+                    <!-- Problem 8 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">8. Vendor Relationship Deterioration</div>
+                                <div class="stakeholder-role">Uncertainty Around February Renewal</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Current State</h4>
+                            <p>Multiple unanswered inquiries about Drift cancellation and renewal terms. "Forced Rhythm on us... took months of tickets, never got on face-to-face call." Uncertainty around February renewal and inability to plan technology roadmap.</p>
+                            
+                            <h4>Daily Impact</h4>
+                            <div class="highlight-box problem">
+                                <p><strong>Process:</strong> Submit tickets for support → Wait months for response → Never get face-to-face call → Submit inquiries about contract terms → No response → Uncertainty about renewal → Cannot plan technology roadmap</p>
+                            </div>
+                            
+                            <h4>Quantified Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Business Impact:</strong> Uncertainty around February renewal, risk in vendor relationship, unable to plan technology roadmap, forced to use unwanted features</p>
+                            </div>
+                            
+                            <div class="quote-box">
+                                "Salesloft is kind of on the shit list right now... lack of communication is frustrating"
+                                <span class="quote-author">— Crysta Ostiguy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                            </div>
+                        </div>
+                        
+        <!-- Solution Section -->
+        <div id="solution" class="content-section">
+            <div class="card">
+                <h2>Solution</h2>
+                <p>Outreach provides comprehensive solutions that address every identified gap, with specific capabilities that Salesloft cannot match.</p>
+                
+                <div class="stakeholder-accordion">
+                    <!-- Solution 1 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">1. True Bidirectional Salesforce Integration</div>
+                                <div class="stakeholder-role">Eliminates Manual Imports Completely</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>How Outreach Solves It</h4>
+                            <p>Automated field sync triggers sequences, advanced task mapping preserves individual activities, custom object support for success activities and usage metrics, lead-to-opportunity activity preservation.</p>
+                            
+                            <h4>Detailed Capabilities</h4>
+                        <div class="highlight-box success">
+                                <p><strong>Automated Field Sync:</strong> Salesforce changes automatically trigger Outreach sequences without manual intervention</p>
+                                <p><strong>Advanced Task Mapping:</strong> Individual activities preserved as separate entities in Salesforce</p>
+                                <p><strong>Custom Object Support:</strong> Success activities and usage metrics seamlessly integrated</p>
+                                <p><strong>Activity Preservation:</strong> Lead-to-opportunity conversion maintains complete context</p>
+                            </div>
+                            
+                        <h4>Business Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Time Recovery:</strong> 1,083 hours annually (20-30 min/day × 13 reps)</p>
+                                <p><strong>Cost Savings:</strong> $27,075 in eliminated manual labor</p>
+                                <p><strong>Operational Benefits:</strong> Zero missed leads, complete data accuracy, immediate sequence starts</p>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <h4>📹 Automated Inbound Lead Flow</h4>
+                                <p>See how Outreach automates inbound leads based on field changes in Salesforce</p>
+                                <a href="https://hello.outreach.io/s/YblLmL0rUX4" target="_blank">View Video →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solution 2 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">2. Opportunity Management Built for Pipeline Velocity</div>
+                                <div class="stakeholder-role">Transforms "Nightmare" to Manageable</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>How Outreach Solves It</h4>
+                            <p>Inline editing without page navigation, mass update hundreds of opportunities simultaneously, custom saved views, activity timeline at-a-glance, AI opportunity summaries.</p>
+                            
+                            <h4>Detailed Capabilities</h4>
+                            <div class="highlight-box success">
+                                <p><strong>Inline Editing:</strong> Update opportunities without leaving the grid</p>
+                                <p><strong>Mass Updates:</strong> Select multiple opportunities and update stages simultaneously</p>
+                                <p><strong>Custom Views:</strong> Saved filters for different pipeline segments (created date, stage, last activity)</p>
+                                <p><strong>Activity Timeline:</strong> Complete activity history visible at-a-glance</p>
+                                <p><strong>AI Summaries:</strong> Automated opportunity summaries with key insights</p>
+                            </div>
+                            
+                            <h4>Business Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Time Recovery:</strong> 1.5 hours/week per manager (vs 2+ hours currently)</p>
+                                <p><strong>Cost Savings:</strong> $42,000-48,000 annually (1,050-1,200 hours @ $40/hr)</p>
+                                <p><strong>Operational Benefits:</strong> Real-time pipeline hygiene, accurate forecasting, leadership visibility</p>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <h4>📹 Customizable Opportunities Grid</h4>
+                                <p>See how Outreach streamlines opportunity editing and visibility</p>
+                                <a href="https://hello.outreach.io/s/a4tM56sPXGY" target="_blank">View Video →</a>
+                        </div>
+                        
+                            <div class="resource-card">
+                                <h4>📹 Real-Time Salesforce Updates</h4>
+                                <p>Why reps have no excuses to keep things in evaluating stage</p>
+                                <a href="https://hello.outreach.io/s/0VJBW6YdB3c" target="_blank">View Video →</a>
+                            </div>
+                        </div>
+                            </div>
+                            
+                    <!-- Solution 3 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">3. Drillable Reporting That Answers "Who" and "Why"</div>
+                                <div class="stakeholder-role">Sequence Performance: Aggregate → Rep → Step-Level</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>How Outreach Solves It</h4>
+                            <p>Email sentiment analysis by objection type, team performance comparative dashboards, pipeline generation report, revenue attribution package for Salesforce.</p>
+                        
+                            <h4>Detailed Capabilities</h4>
+                        <div class="highlight-box success">
+                                <p><strong>Drillable Reports:</strong> Click sequence name → see all reps → click rep name → see all steps → click step → see individual emails/calls</p>
+                                <p><strong>Sentiment Analysis:</strong> Email sentiment analysis by objection type</p>
+                                <p><strong>Team Performance:</strong> Comparative dashboards across teams and timeframes</p>
+                                <p><strong>Pipeline Generation:</strong> Unique report showing which sequences drive pipeline</p>
+                                <p><strong>Revenue Attribution:</strong> Complete package for Salesforce integration</p>
+                            </div>
+                            
+                        <h4>Business Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Time Recovery:</strong> 75% reduction in reporting time (6 hours → 1.5 hours/week)</p>
+                                <p><strong>Cost Savings:</strong> $10,500 annually (300 hours @ $35/hr)</p>
+                                <p><strong>Operational Benefits:</strong> Answer "who" and "why" instantly, replicate top performer strategies</p>
+                        </div>
+                            
+                            <div class="resource-card">
+                                <h4>📹 Sequence Performance Report</h4>
+                                <p>Revenue attribution, what's working filters, drillable insights</p>
+                                <a href="https://hello.outreach.io/s/A5pAnZyBTRM" target="_blank">View Video →</a>
+                    </div>
+
+                            <div class="resource-card">
+                                <h4>📹 Pipeline Generation Report</h4>
+                                <p>Unique Outreach report showing which sequences drive pipeline</p>
+                                <a href="https://hello.outreach.io/s/Va1LgbT78BM" target="_blank">View Video →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solution 4 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">4. Client Services Enablement (Salesloft Doesn't Even Try)</div>
+                                <div class="stakeholder-role">Full Platform for CS Workflows</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>For Implementation Team (Chelsea's Team)</h4>
+                            <div class="highlight-box success">
+                                <p><strong>Automated Post-Close Sequences:</strong> Opportunity closes → automated sequence starts</p>
+                                <p><strong>Task-Driven Workflows:</strong> Next day: task queue shows exactly what to do and when</p>
+                                <p><strong>AI Call Summaries:</strong> Auto-populate in Outreach, searchable across all accounts</p>
+                                <p><strong>Account-Level Activity:</strong> Complete sales + implementation history visible</p>
+                                <p><strong>Custom Objects Integration:</strong> Usage metrics and health scores surfaced</p>
+                                <p><strong>Chili Piper Integration:</strong> Automated meeting scheduling and follow-ups</p>
+                            </div>
+                            
+                            <h4>For Account Management Team (Danielle's Team)</h4>
+                            <div class="highlight-box success">
+                                <p><strong>Automated Renewal Triggers:</strong> 90 days before expiration, automatic identification</p>
+                                <p><strong>Health Score Integration:</strong> Usage data, login frequency, agent activity</p>
+                                <p><strong>Prioritized Task Lists:</strong> At-risk accounts first, structured daily priorities</p>
+                                <p><strong>Follow-Up Cadences:</strong> Eliminate Excel tracking, automated scheduling</p>
+                                <p><strong>Context Preservation:</strong> Complete history when reps transition accounts</p>
+                                <p><strong>Renewal Pipeline Visibility:</strong> Real-time dashboard for David/leadership</p>
+                            </div>
+                            
+                            <h4>Business Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Implementation Team:</strong> 30 minutes/day per rep × 26 reps = $81,250 annually</p>
+                                <p><strong>Account Management:</strong> 45 minutes/day per rep × 34 reps = $159,375 annually</p>
+                                <p><strong>Total Savings:</strong> $240,625 across both teams</p>
+                                <p><strong>Operational Benefits:</strong> Task-driven structure, sales context visibility, scalable process</p>
+                            </div>
+                        </div>
+                        </div>
+                        
+                    <!-- Solution 5 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">5. Conversation Intelligence as Coaching System</div>
+                                <div class="stakeholder-role">AI Assist Across All Calls/Emails</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                        <h4>How Outreach Solves It</h4>
+                            <p>Keyword search entire call library, playlists for training, live battle cards with real-time guidance, coach cards with AI suggestions, lifecycle aggregation across all departments.</p>
+                            
+                            <h4>Detailed Capabilities</h4>
+                            <div class="highlight-box success">
+                                <p><strong>AI Assist:</strong> Summarizes every call in 15 seconds, scans last 80 emails and 10 recorded calls</p>
+                                <p><strong>Keyword Search:</strong> Search across entire call library ("Prime product," "competitor," "objection")</p>
+                                <p><strong>Playlists:</strong> Create training playlists for competitor objection handling, Prime product positioning</p>
+                                <p><strong>Coach Cards:</strong> Structured coaching feedback with AI suggestions</p>
+                                <p><strong>Lifecycle Aggregation:</strong> BDR → AE → Implementation → Account Manager visibility</p>
+                                <p><strong>Wingback Analysis:</strong> Systematic analysis of why customers churn/return</p>
+                            </div>
+                            
+                            <h4>Business Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Adoption:</strong> 80% recorded calls → full adoption</p>
+                                <p><strong>Coaching:</strong> Systematic coaching, systematic wingback analysis</p>
+                                <p><strong>Revenue Impact:</strong> 2% conversion lift = $100K+ annually</p>
+                                <p><strong>Operational Benefits:</strong> Full utilization of recorded content, accelerated new rep ramp</p>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <h4>📹 Conversational Intelligence Overview</h4>
+                                <p>Looking at CINC's discovery call, AI summaries, coach cards</p>
+                                <a href="https://hello.outreach.io/s/Bo9G55g-zWQ" target="_blank">View Video →</a>
+                        </div>
+                        
+                            <div class="resource-card">
+                                <h4>📹 KAIA Library: Keyword Search</h4>
+                                <p>Search aggregate of all calls for specific keywords</p>
+                                <a href="https://hello.outreach.io/s/PsFKlLmTVdA" target="_blank">View Video →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solution 6 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">6. Platform Flexibility for Unique B2B Motion</div>
+                                <div class="stakeholder-role">Customizable to Non-Standard Workflows</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>How Outreach Solves It</h4>
+                            <p>Saved filter views per team, field display priority (contact over account), accommodates real estate agent buyer behavior.</p>
+                            
+                            <h4>Detailed Capabilities</h4>
+                        <div class="highlight-box success">
+                                <p><strong>Customizable Workflows:</strong> Accommodates non-standard processes</p>
+                                <p><strong>Saved Filter Views:</strong> Per team, per use case</p>
+                                <p><strong>Field Display Priority:</strong> Contact name, created date, stage (not account name)</p>
+                                <p><strong>Real Estate Agent Support:</strong> Individual business buyer behavior accommodated</p>
+                                <p><strong>Flexible Structure:</strong> No "hitting head on ceiling" limitations</p>
+                            </div>
+                            
+                        <h4>Business Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Operational Benefits:</strong> Workflows that match sales process, relevant information prioritized</p>
+                                <p><strong>Efficiency:</strong> No forced workarounds, no breaking customizations</p>
+                            </div>
+                            
+                            <div class="quote-box">
+                                "You hit your head on ceiling with Salesloft... you can do it in Outreach."
+                                <span class="quote-author">— Crysta Ostiguy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+
+        <!-- Outreach vs Salesloft Section -->
+        <div id="differentiators" class="content-section">
+            <div class="card">
+                <h2>Outreach vs. Salesloft</h2>
+                <p>Direct comparison of capabilities that matter most to CINC's operations, with video demonstrations of key differentiators.</p>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Capability</th>
+                            <th>Salesloft</th>
+                            <th>Outreach</th>
+                            <th>Business Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Bi-directional Sync</strong></td>
+                            <td>Salesloft to Salesforce creating additional work, whoever imports becomes record owner can't change</td>
+                            <td>True two-way automated</td>
+                            <td>Eliminates 1,083 hours/year</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pipeline Management</strong></td>
+                            <td>Salesforce-only, manual</td>
+                            <td>Inline editing, mass updates</td>
+                            <td>"Nightmare" to manageable</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reporting Drillability</strong></td>
+                            <td>Not drillable</td>
+                            <td>Click aggregate → rep → step</td>
+                            <td>Answers "who" and "why"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Client Services Support</strong></td>
+                            <td>NOT DEPLOYED</td>
+                            <td>Full platform for CS workflows</td>
+                            <td>Eliminates $240K+ manual work</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lead Activity Preservation</strong></td>
+                            <td>Lost at conversion</td>
+                            <td>Maintained through lifecycle</td>
+                            <td>Complete deal context</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Conversation Intelligence</strong></td>
+                            <td>Basic transcription</td>
+                            <td>AI Assist, keyword search, playlists</td>
+                            <td>80% recorded → full adoption</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Workflow Flexibility</strong></td>
+                            <td>Rigid structure</td>
+                            <td>Fully customizable</td>
+                            <td>Accommodates unique B2B motion</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vendor Support</strong></td>
+                            <td>Unresponsive (8+ weeks)</td>
+                            <td>Dedicated CSM + live chat</td>
+                            <td>Risk mitigation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Advanced Triggers</strong></td>
+                            <td>Basic sequence triggers only</td>
+                            <td>Complex multi-step triggers, renewal automation</td>
+                            <td>Automated renewal management</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Salesforce Extension</strong></td>
+                            <td>Limited, clunky interface</td>
+                            <td>Seamless native integration</td>
+                            <td>Work without leaving Salesforce</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Outlook Integration</strong></td>
+                            <td>Basic email tracking</td>
+                            <td>Full Outlook sync, calendar integration</td>
+                            <td>Unified email experience</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AI & Intelligence</strong></td>
+                            <td>Basic conversation insights</td>
+                            <td>Advanced AI, sentiment analysis, coaching</td>
+                            <td>Data-driven sales optimization</td>
+                        </tr>
+                        <tr>
+                        <td><strong>Implementation</strong></td>
+                        <td>Forced updates, months of tickets</td>
+                        <td>Proven methodology, MVP options</td>
+                        <td>Q1-safe deployment</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Key Differentiator Videos</h3>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <h4>📹 Salesforce + Outreach Strategic Partnership</h4>
+                        <p>Why Salesforce chose to invest in Outreach (and not Salesloft)</p>
+                        <a href="https://hello.outreach.io/s/yn9E-oFb3rQ" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Working Directly from Salesforce</h4>
+                        <p>Seamless integration without leaving Salesforce</p>
+                        <a href="https://hello.outreach.io/s/eeVMPa5a3BU" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Single Opportunity Deep Dive with AI Search</h4>
+                        <p>Looking into 1 opportunity to see all historical activity and using AI to ask questions</p>
+                        <a href="https://hello.outreach.io/s/t1FPYKajMZc" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Advanced CI: Topic Tracking & Playlists</h4>
+                        <p>Tracking topics, playlists, tracking mentions of "PRIME" product</p>
+                        <a href="https://hello.outreach.io/s/2DFKc6vYtuQ" target="_blank">View Video →</a>
+                    </div>
+                </div>
+                        
+                        <div class="quote-box">
+                    "If anyone were to ask me just a simple answer to one question, do I believe Outreach is better than Salesloft, the answer would be yes."
+                    <span class="quote-author">— Crysta Ostiguy, Senior Director Sales Development</span>
+                </div>
+            </div>
+                        </div>
+                        
+        <!-- ROI Section -->
+        <div id="roi" class="content-section">
+            <div class="card">
+                <h2>ROI</h2>
+                <p>Comprehensive analysis of both direct cost savings and revenue impact opportunities from solving CINC's identified problems.</p>
+                
+                <h3>Direct Cost Savings (Quantified)</h3>
+                
+                <div class="impact-metrics">
+                    <div class="impact-card">
+                        <div class="impact-icon">⏱️</div>
+                        <div class="impact-label">Manual Data Management<br><strong>$27,075 annually</strong></div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-icon">📊</div>
+                        <div class="impact-label">Pipeline Management<br><strong>$42,000-48,000 annually</strong></div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-icon">📈</div>
+                        <div class="impact-label">Reporting & Analytics<br><strong>$10,500 annually</strong></div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-icon">👥</div>
+                        <div class="impact-label">Implementation Team<br><strong>$81,250 annually</strong></div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-icon">🔄</div>
+                        <div class="impact-label">Account Management<br><strong>$159,375 annually</strong></div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-icon">💼</div>
+                        <div class="impact-label">Context Loss Prevention<br><strong>$4,000 annually</strong></div>
+                    </div>
+                            </div>
+                            
+                <h3>Revenue Impact Opportunities</h3>
+                
+                <div class="stakeholder-accordion">
+                    <!-- Revenue Impact 1 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">1. Pipeline Velocity Acceleration</div>
+                                <div class="stakeholder-role">Closing "Evaluating" Opportunities Faster</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Current State</h4>
+                            <p>Hundreds of opportunities stuck in "evaluating" stage because managers avoid the 2+ hour manual cleanup process.</p>
+                        
+                            <h4>Outreach Solution</h4>
+                        <div class="highlight-box success">
+                                <p><strong>Inline Editing:</strong> Update opportunities without leaving the grid</p>
+                                <p><strong>Mass Updates:</strong> Select multiple opportunities and update stages simultaneously</p>
+                                <p><strong>Real-Time Sync:</strong> Changes immediately visible to leadership</p>
+                            </div>
+                            
+                            <h4>Revenue Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>More Accurate Pipeline:</strong> Leadership sees true pipeline health in real-time</p>
+                                <p><strong>Faster Deal Velocity:</strong> Opportunities move through stages more efficiently</p>
+                                <p><strong>Better Forecasting:</strong> Accurate pipeline data enables better resource allocation</p>
+                                <p><strong>Conservative Estimate:</strong> 5% improvement in deal velocity = $150K+ annually</p>
+                            </div>
+                            </div>
+                        </div>
+
+                    <!-- Revenue Impact 2 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">2. Enhanced Inbound Automation</div>
+                                <div class="stakeholder-role">Faster Speed to Lead</div>
+                    </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Current State</h4>
+                            <p>Manual imports 2-3x daily create delays in lead response time and missed opportunities.</p>
+                            
+                            <h4>Outreach Solution</h4>
+                            <div class="highlight-box success">
+                                <p><strong>Automated Triggers:</strong> Salesforce field changes automatically trigger Outreach sequences</p>
+                                <p><strong>Advanced Triggers:</strong> More sophisticated automation than Salesloft's basic rules</p>
+                                <p><strong>Immediate Response:</strong> Zero delay between lead creation and outreach</p>
+                            </div>
+                            
+                            <h4>Revenue Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Speed to Lead:</strong> 10% improvement in response time</p>
+                                <p><strong>SDR Conversion:</strong> 5% lift in SDR conversion rates</p>
+                                <p><strong>Conservative Estimate:</strong> $100K+ annually from improved conversion</p>
+                            </div>
+                        </div>
+                </div>
+                    
+                    <!-- Revenue Impact 3 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">3. Automated Renewal Triggers</div>
+                                <div class="stakeholder-role">Proactive Account Management</div>
+            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Current State</h4>
+                            <p>Danielle's team manually tracks renewal dates in Excel, leading to missed follow-ups and churn risk.</p>
+                            
+                            <h4>Outreach Solution</h4>
+                            <div class="highlight-box success">
+                                <p><strong>Automated Triggers:</strong> 90 days before expiration, automatic identification</p>
+                                <p><strong>Health Score Integration:</strong> Usage data, login frequency, agent activity</p>
+                                <p><strong>Prioritized Task Lists:</strong> At-risk accounts first, structured daily priorities</p>
+        </div>
+
+                            <h4>Revenue Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Renewal Retention:</strong> 2-3 point improvement in renewal rates</p>
+                                <p><strong>Churn Prevention:</strong> Proactive identification of at-risk accounts</p>
+                                <p><strong>Conservative Estimate:</strong> $50K+ annually from improved retention</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Revenue Impact 4 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">4. Conversation Intelligence Adoption</div>
+                                <div class="stakeholder-role">Systematic Coaching & Training</div>
+                </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Current State</h4>
+                            <p>80% of demos recorded but only 5% analyzed. JB refuses to watch hour-long demos for coaching.</p>
+                            
+                            <h4>Outreach Solution</h4>
+                            <div class="highlight-box success">
+                                <p><strong>AI Assist:</strong> Summarizes every call in 15 seconds</p>
+                                <p><strong>Keyword Search:</strong> Find specific topics across all calls</p>
+                                <p><strong>Playlists:</strong> Training content for competitor handling, Prime product positioning</p>
+                                <p><strong>Coach Cards:</strong> Structured feedback with AI suggestions</p>
+                            </div>
+                            
+                            <h4>Revenue Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Coaching Efficiency:</strong> Managers can coach more reps at scale</p>
+                                <p><strong>Training Acceleration:</strong> New rep ramp time reduced by 20%</p>
+                                <p><strong>Conversion Improvement:</strong> 2% lift from better messaging consistency</p>
+                                <p><strong>Conservative Estimate:</strong> $100K+ annually from improved performance</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Revenue Impact 5 -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">5. More Selling Hours</div>
+                                <div class="stakeholder-role">Eliminating Administrative Tasks</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Current State</h4>
+                            <p>Reps spend 20-30 minutes daily on manual data management, reducing time for actual selling activities.</p>
+                            
+                            <h4>Outreach Solution</h4>
+                            <div class="highlight-box success">
+                                <p><strong>Automated Workflows:</strong> Eliminate manual imports and data entry</p>
+                                <p><strong>Task-Driven Structure:</strong> Clear priorities, no guessing what to do next</p>
+                                <p><strong>Context Preservation:</strong> Complete account history without manual digging</p>
+                            </div>
+                            
+                            <h4>Revenue Impact</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>More Selling Time:</strong> 20-30 minutes/day per rep = 1,083 hours annually</p>
+                                <p><strong>Better Prospecting:</strong> More time for high-value activities</p>
+                                <p><strong>Improved Focus:</strong> Less time on admin, more on customer engagement</p>
+                                <p><strong>Conservative Estimate:</strong> 10% improvement in rep productivity = $200K+ annually</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box success">
+                    <h3>Total Quantified Value</h3>
+                    <p><strong>Hard Cost Savings: $324,200 annually</strong></p>
+                    <p><strong>Revenue Impact Opportunities: $600,000+ annually</strong></p>
+                    <p><strong>Total Business Value: $924,000+ annually</strong></p>
+                </div>
+
+                <h3>Strategic Value (Not Yet Quantified)</h3>
+                <ul>
+                    <li><strong>Renewal Pipeline Visibility:</strong> David currently struggles with real-time renewal tracking</li>
+                    <li><strong>Client Services Scalability:</strong> Current manual processes prevent team growth</li>
+                    <li><strong>Conversation Intelligence Adoption:</strong> Lifecycle visibility across all departments</li>
+                    <li><strong>Competitive Intelligence:</strong> Keyword tracking and objection pattern identification</li>
+                    <li><strong>Vendor Risk Mitigation:</strong> Stable, responsive vendor relationship</li>
+                </ul>
+
+                <div class="quote-box">
+                    "The best way to get through to my CRO is to tie an ROI or dollar amount to it."
+                    <span class="quote-author">— Crysta Ostiguy</span>
+                </div>
+            </div>
+                </div>
+
+        <!-- Pricing Section -->
+        <div id="pricing" class="content-section">
+            <div class="card">
+                <h2>Pricing</h2>
+                <p>Comprehensive pricing breakdown for CINC's 87-person revenue organization with significant discounts and implementation support.</p>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Product/Service</th>
+                            <th>Seats/Units</th>
+                            <th>Price/Month</th>
+                            <th>Discount %</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Outreach Engage</strong></td>
+                            <td>62</td>
+                            <td><span style="text-decoration: line-through;">$120</span> <strong>$90</strong></td>
+                            <td>25%</td>
+                            <td><span style="text-decoration: line-through;">$89,280</span> <strong>$66,960</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Outreach Meet</strong></td>
+                            <td>48</td>
+                            <td><span style="text-decoration: line-through;">$60</span> <strong>$45</strong></td>
+                            <td>25%</td>
+                            <td><span style="text-decoration: line-through;">$34,560</span> <strong>$25,920</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Outreach Deal</strong></td>
+                            <td>48</td>
+                            <td><span style="text-decoration: line-through;">$25</span> <strong>$18.75</strong></td>
+                            <td>25%</td>
+                            <td><span style="text-decoration: line-through;">$14,400</span> <strong>$10,800</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Outreach Admin</strong></td>
+                            <td>8</td>
+                            <td><span style="text-decoration: line-through;">$120</span> <strong>$25</strong></td>
+                            <td>79.2%</td>
+                            <td><span style="text-decoration: line-through;">$11,520</span> <strong>$2,400</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Outreach Engage (CS)</strong></td>
+                            <td>26</td>
+                            <td><span style="text-decoration: line-through;">$120</span> <strong>$0</strong></td>
+                            <td>100%</td>
+                            <td><span style="text-decoration: line-through;">$37,440</span> <strong>$0</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Full Implementation (One-Time Fee)</strong></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>0%</td>
+                            <td><strong>$25,500</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Premium Support: Plus Edition</strong></td>
+                            <td>-</td>
+                            <td>Included</td>
+                            <td>-</td>
+                            <td><strong>Free</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="impact-metrics">
+                    <div class="impact-card">
+                        <div class="impact-icon">💰</div>
+                        <div class="impact-label">Your Savings<br><strong>Annually: $81,120</strong><br><strong>Term savings (3y): $243,360</strong></div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-icon">📊</div>
+                        <div class="impact-label">Recurring Annual Cost<br><span style="text-decoration: line-through;">$187,200</span><br><strong>$106,080</strong></div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-icon">📈</div>
+                        <div class="impact-label">Year 1 Total Investment<br><span style="text-decoration: line-through;">$212,700</span><br><strong>$131,580</strong></div>
+                    </div>
+                </div>
+
+                <h3>License Breakdown</h3>
+                <div class="highlight-box">
+                    <h4>Sales Team (40 licenses)</h4>
+                    <ul>
+                        <li>14 Base (SDR/BDR): Outreach Engage only</li>
+                        <li>14-17 Full (AEs): Outreach Engage + Meet + Deal</li>
+                        <li>8 Admin/Leadership: Complete visibility + admin capabilities</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Client Services (60 licenses)</h4>
+                    <ul>
+                        <li>26 Implementation/Training: Outreach Meet only (CI capabilities)</li>
+                        <li>34 Account Management: Full Outreach Engage + Meet + Deal</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Support Team (21)</h4>
+                    <p>Not included in license count - frontline support teams that aren't doing outbound engagement or account management typically don't need full licenses.</p>
+                </div>
+
+                <h3>Value Positioning</h3>
+                <div class="highlight-box success">
+                    <h4>ROI Summary</h4>
+                    <ul>
+                        <li><strong>Hard Savings:</strong> $324K annually</li>
+                        <li><strong>Revenue Impact:</strong> $600K+ annually</li>
+                        <li><strong>Total Value:</strong> $924K+ annually</li>
+                        <li><strong>Payback Period:</strong> < 2 months</li>
+                        <li><strong>3-Year Savings:</strong> $243,360 in licensing alone</li>
+                    </ul>
+                </div>
+
+                <div class="quote-box">
+                    "Best way to get through to my CRO is to tie an ROI or dollar amount to it."
+                    <span class="quote-author">— Crysta Ostiguy</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implementation Plan Section -->
+        <div id="implementation" class="content-section">
+            <div class="card">
+                <h2>Implementation Plan</h2>
+                <p>This is the most important part - how we get there smoothly without disruption, on time, with a clear path from sign to live at 12/15.</p>
+                
+                <div class="highlight-box">
+                    <h3>🎯 Critical Timeline Importance</h3>
+                    <p><strong>Crysta:</strong> "December doesn't exist... we CANNOT mess up Q1. That's our busiest quarter."</p>
+                    <p><strong>Solution:</strong> MVP launch (December) + Managed Services (Q1) protects revenue execution while enabling January 1 platform adoption.</p>
+                </div>
+
+                <h3>Implementation Options</h3>
+                
+                <div class="stakeholder-accordion">
+                    <!-- Option 1: MVP Route -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">Option 1: MVP Launch (Recommended)</div>
+                                <div class="stakeholder-role">4 Weeks + Managed Services | Q1-Safe</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Phase 1: MVP Launch (December)</h4>
+                            <div class="highlight-box success">
+                                <h4>Week 1-2: Foundation & Integration</h4>
+                                <ul>
+                                    <li>Salesforce authentication (2 minutes)</li>
+                                    <li>CRM integration setup (1-2 days max)</li>
+                                    <li>Core workflow design interviews</li>
+                                    <li>Essential sequence creation</li>
+                                </ul>
+                        </div>
+                            
+                            <div class="highlight-box success">
+                                <h4>Week 3-4: Content Migration & Training</h4>
+                                <ul>
+                                    <li>Content migration from Salesloft</li>
+                                    <li>Workshop-style training (2 hours per team)</li>
+                                    <li>Hands-on with live tasks</li>
+                                    <li>Go-live preparation</li>
+                                </ul>
+                </div>
+
+                            <h4>Phase 2: Managed Services (Q1)</h4>
+                            <div class="highlight-box success">
+                                <h4>January-March: Advanced Features via Managed Services</h4>
+                                <ul>
+                                    <li>Outsourced admin during Q1</li>
+                                    <li>Complex features deferred to Phase 2</li>
+                                    <li>Zero learning curve during peak season</li>
+                                    <li>Advanced automation setup</li>
+                                    <li>Custom reporting optimization</li>
+                                </ul>
+                            </div>
+                            
+                            <h4>Why MVP Route Works</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Q1 Protection:</strong> Platform live before January, managed services during peak season</p>
+                                <p><strong>Proven Approach:</strong> "We're doing that a lot more with former Salesloft customers where time is of the essence"</p>
+                                <p><strong>Zero Disruption:</strong> Workshop training ensures instant adoption</p>
+                                <p><strong>Scalable:</strong> Complex features added when team has bandwidth</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Option 2: Full Route -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">Option 2: Full Implementation</div>
+                                <div class="stakeholder-role">6-8 Weeks | Complete Feature Set</div>
+                        </div>
+                            <span class="toggle-icon">+</span>
+                    </div>
+                        <div class="stakeholder-content">
+                            <h4>Full Implementation Timeline</h4>
+                            <div class="highlight-box success">
+                                <h4>Week 1-2: Foundation & Integration</h4>
+                                <ul>
+                                    <li>Salesforce authentication and configuration</li>
+                                    <li>Complete CRM integration setup</li>
+                                    <li>Advanced workflow design interviews</li>
+                                    <li>Custom object integration</li>
+                                </ul>
+                </div>
+
+                            <div class="highlight-box success">
+                                <h4>Week 3-4: Content Migration & Advanced Setup</h4>
+                                <ul>
+                                    <li>Complete content migration from Salesloft</li>
+                                    <li>Advanced sequence creation</li>
+                                    <li>Custom reporting setup</li>
+                                    <li>Client Services workflow implementation</li>
+                                </ul>
+                </div>
+
+                            <div class="highlight-box success">
+                                <h4>Week 5-6: Training & Optimization</h4>
+                                <ul>
+                                    <li>Comprehensive training for all teams</li>
+                                    <li>Advanced feature configuration</li>
+                                    <li>Custom dashboard creation</li>
+                                    <li>Go-live preparation and testing</li>
+                                </ul>
+                    </div>
+                            
+                            <div class="highlight-box success">
+                                <h4>Week 7-8: Launch & Support</h4>
+                                <ul>
+                                    <li>Go-live with full feature set</li>
+                                    <li>Immediate support and optimization</li>
+                                    <li>Performance monitoring</li>
+                                    <li>Success metrics validation</li>
+                                </ul>
+                    </div>
+                            
+                            <h4>When to Choose Full Route</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Best For:</strong> Teams with Q4 bandwidth and desire for complete feature set from day one</p>
+                                <p><strong>Timeline:</strong> Requires 6-8 weeks of dedicated focus</p>
+                                <p><strong>Risk:</strong> Higher complexity, more moving parts</p>
+                    </div>
+                    </div>
+                </div>
+
+                    <!-- Option 3: Expedited -->
+                    <div class="stakeholder-item">
+                        <div class="stakeholder-header" onclick="toggleStakeholder(this)">
+                            <div>
+                                <div class="stakeholder-title">Option 3: Expedited Implementation</div>
+                                <div class="stakeholder-role">2-3 Weeks | Core Features Only</div>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="stakeholder-content">
+                            <h4>Expedited Timeline</h4>
+                            <div class="highlight-box success">
+                                <h4>Week 1: Core Setup</h4>
+                                <ul>
+                                    <li>Salesforce authentication</li>
+                                    <li>Basic CRM integration</li>
+                                    <li>Essential sequences only</li>
+                                    <li>Core workflow setup</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="highlight-box success">
+                                <h4>Week 2-3: Training & Launch</h4>
+                                <ul>
+                                    <li>Focused training on core features</li>
+                                    <li>Basic content migration</li>
+                                    <li>Go-live with essential functionality</li>
+                                    <li>Phase 2 planning for advanced features</li>
+                                </ul>
+                            </div>
+                            
+                            <h4>When to Choose Expedited</h4>
+                            <div class="highlight-box impact">
+                                <p><strong>Best For:</strong> Teams with very limited time but need to go live quickly</p>
+                                <p><strong>Timeline:</strong> 2-3 weeks maximum</p>
+                                <p><strong>Trade-off:</strong> Core features only, advanced features in Phase 2</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Implementation Success Factors</h3>
+                
+                <div class="highlight-box">
+                    <h4>Salesforce Team Involvement</h4>
+                    <ul>
+                        <li><strong>Initial setup:</strong> 2 minutes (authentication)</li>
+                        <li><strong>Configuration:</strong> 1-2 days maximum</li>
+                        <li><strong>Ongoing maintenance:</strong> Zero unless major CRM changes</li>
+                        <li><strong>Danny:</strong> "Two weeks is plenty of time. I have done this in a couple of days. I've done it in one day."</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Training Approach</h4>
+                    <ul>
+                        <li><strong>Workshop-style:</strong> Reps use system during training</li>
+                        <li><strong>Hour 1:</strong> Show and tell</li>
+                        <li><strong>Hour 2:</strong> Hands-on with live tasks</li>
+                        <li><strong>Result:</strong> No post-training learning curve</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Outreach Track Record</h4>
+                    <ul>
+                        <li><strong>6,000+ customers</strong> successfully implemented</li>
+                        <li><strong>1,000 implementations annually</strong> with proven methodology</li>
+                        <li><strong>Specialized Salesloft-to-Outreach expertise</strong> - we do this all the time</li>
+                        <li><strong>Danny:</strong> "We are no stranger to this. We have over 6,000 customers. We do literally 1,000 implementations a year."</li>
+                    </ul>
+                </div>
+
+                <h3>Q1 Protection Plan</h3>
+                <div class="highlight-box success">
+                    <h4>How We Protect Your Busiest Quarter</h4>
+                    <ol>
+                        <li><strong>MVP live before January:</strong> Platform ready for Q1 peak season</li>
+                        <li><strong>Managed Services during Q1:</strong> Outsourced admin, zero learning curve</li>
+                        <li><strong>Complex features deferred:</strong> Advanced automation in Phase 2</li>
+                        <li><strong>Workshop training:</strong> Instant adoption, no ramp time</li>
+                        <li><strong>Proven methodology:</strong> 1,000 implementations annually</li>
+                    </ol>
+                </div>
+
+                <div class="quote-box">
+                    "We can absolutely align to MVP launch. We're doing that a lot more with former Salesloft customers where time is of the essence. You can get your teams in and set them off to the races come January."
+                    <span class="quote-author">— Danny, Implementation Lead</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conclusion Section -->
+        <div id="conclusion" class="content-section">
+            <div class="card">
+                <h2>Conclusion</h2>
+
+                <h3>The Evidence is Compelling</h3>
+                <p>After seven comprehensive demos across all business units, the evaluation has revealed fundamental gaps in Salesloft's ability to support CINC's growth trajectory. The evidence is clear: CINC has outgrown what Salesloft can deliver.</p>
+                
+                <div class="highlight-box">
+                    <h4>Your Team's Direct Feedback</h4>
+                    <div class="quote-box">
+                        "If anyone were to ask me just a simple answer to one question, do I believe Outreach is better than Salesloft, the answer would be yes."
+                        <span class="quote-author">— Crysta Ostiguy, Senior Director Sales Development</span>
+                    </div>
+                    <div class="quote-box">
+                        "Overall, I think your platform is far cleaner, far more intuitive and most importantly, far more customizable."
+                        <span class="quote-author">— Shawn Craig, Senior Leadership</span>
+                    </div>
+                    <div class="quote-box">
+                        "I love Outreach. You don't have to sell me on Outreach."
+                        <span class="quote-author">— Crysta Ostiguy</span>
+                    </div>
+                </div>
+
+                <h3>Problems Documented & Quantified</h3>
+                <p>Eight critical gaps have been identified across your 87-person revenue organization, each creating specific inefficiencies and missed opportunities:</p>
+                
+                <div class="highlight-box problem">
+                    <h4>Quantified Business Impact</h4>
+                    <ul>
+                        <li><strong>Bidirectional sync failure:</strong> $27,075 annually in wasted labor</li>
+                        <li><strong>Pipeline management paralysis:</strong> $42,000-48,000 annually in forced cleanup time</li>
+                        <li><strong>Client Services operating manually:</strong> $240,625 annually across both teams</li>
+                        <li><strong>Reporting deficiencies:</strong> $10,500 annually in manual reporting</li>
+                        <li><strong>Conversation intelligence underutilization:</strong> 80% recorded, 5% analyzed</li>
+                        <li><strong>Real estate agent workflow friction:</strong> Forced workflows that don't match sales process</li>
+                        <li><strong>Lead conversion activity loss:</strong> Historical context disappears at conversion</li>
+                        <li><strong>Vendor relationship deterioration:</strong> Uncertainty around February renewal</li>
+                    </ul>
+                </div>
+
+                <h3>The Strategic Decision</h3>
+                <p>This isn't about escaping a failing vendor—it's about recognizing that CINC has outgrown what Salesloft can deliver. Your sales team needs true bidirectional sync, drillable reporting, and deal management. Your Client Services organization needs automation and structure.</p>
+                
+                <p>The evaluation has revealed that Salesloft functions only as a sales engagement layer. It cannot support your Client Services motion, provides no deal management, offers limited conversation intelligence, and lacks flexibility for your unique B2B motion (selling to real estate agents who operate like individual businesses).</p>
+
+                <div class="highlight-box success">
+                    <h3>✅ Positioning for Growth</h3>
+                    <p>Outreach provides the platform flexibility, Client Services enablement, and conversation intelligence that CINC needs to scale across your entire 87-person revenue organization. The platform accommodates your unique B2B motion with complete flexibility and provides capabilities that Salesloft doesn't even attempt.</p>
+                </div>
+
+                <h3>Implementation Path</h3>
+                <p>MVP launch in December protects Q1 revenue execution while enabling January 1 platform adoption. Managed Services during Q1 ensures zero disruption to your busiest quarter. The implementation approach is proven: 1,000 implementations annually with specialized Salesloft-to-Outreach expertise.</p>
+                
+                <p>Workshop-style training ensures instant adoption with no post-training learning curve. The platform will be live before January, with managed services handling complex features during your peak season.</p>
+
+                <h3>Total Business Value</h3>
+                <div class="highlight-box success">
+                    <h4>Comprehensive ROI Analysis</h4>
+                    <ul>
+                        <li><strong>Hard Cost Savings:</strong> $324,200 annually</li>
+                        <li><strong>Revenue Impact Opportunities:</strong> $600,000+ annually</li>
+                        <li><strong>Total Business Value:</strong> $924,000+ annually</li>
+                        <li><strong>Payback Period:</strong> < 2 months</li>
+                        <li><strong>3-Year Licensing Savings:</strong> $243,360</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3 style="text-align: center; font-size: 24px; margin-bottom: 10px;">The Path Forward is Clear</h3>
+                    <p style="text-align: center; font-size: 18px; margin: 0;">$924,000+ annual value with < 2 month payback period. The question isn't whether to make this change—it's how quickly you can implement it.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources Section -->
+        <div id="resources" class="content-section">
+            <div class="card">
+                <h2>Resources</h2>
+                <p>Comprehensive resource library organized by priority and relevance to CINC's evaluation process.</p>
+                
+                <h3>Most Important Resources</h3>
+                
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <h4>📱 Texting Walkthrough</h4>
+                        <p>Critical for understanding Outreach's texting capabilities</p>
+                        <a href="https://hello.outreach.io/kaia/share/JTdCJTIydiUyMiUzQSU3QiUyMnAlMjIlM0ElMjI4M0NRazlYSSUyMiUyQyUyMm0lMjIlM0ElMjI4ZjA5ZWQ1OS0wNGJhLTExZTYtOTQwYS0wMmM5YTY4N2MzM2IlM0F2bWJhLWFZT1RrNkZ1cXBUX2RnY1lBJTIyJTJDJTIyaSUyMiUzQSUyMjExNDMwJTIyJTdEJTdE?" target="_blank">View Texting Walkthrough →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>⚙️ Admin Walkthrough</h4>
+                        <p>Essential for understanding Outreach's admin functionality</p>
+                        <a href="https://cl.outreach.io/YEuEKLeD?method=GET" target="_blank">View Admin Walkthrough →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Salesforce + Outreach Strategic Partnership</h4>
+                        <p>Why Salesforce chose to invest in Outreach (and not Salesloft)</p>
+                        <a href="https://hello.outreach.io/s/yn9E-oFb3rQ" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Customizable Opportunities Grid</h4>
+                        <p>How Outreach streamlines opportunity editing and visibility, giving teams more insight into opportunities with customizable views</p>
+                        <a href="https://hello.outreach.io/s/a4tM56sPXGY" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 KAIA Library: Keyword Search Across All Calls</h4>
+                        <p>Using KAIA library to search aggregate of all calls (video and cold calls) to search for specific keywords — Salesloft cannot do this</p>
+                        <a href="https://hello.outreach.io/s/PsFKlLmTVdA" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Single Opportunity Deep Dive with AI Search</h4>
+                        <p>Looking into 1 opportunity to see all historical activity and using AI to ask questions/search through transcripts</p>
+                        <a href="https://hello.outreach.io/s/t1FPYKajMZc" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Sequence Performance Report</h4>
+                        <p>Revenue attribution, what's working filters, etc.</p>
+                        <a href="https://hello.outreach.io/s/A5pAnZyBTRM" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Single Account Historical Activity View</h4>
+                        <p>Looking into 1 account and its historical activity (CINC example)</p>
+                        <a href="https://hello.outreach.io/s/_shAQbFPKk0" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Accounts Page: Context Aggregation & Risk Identification</h4>
+                        <p>Aggregating context and working through accounts, custom lists, finding risk in accounts</p>
+                        <a href="https://hello.outreach.io/s/vM1DI4LwJAA" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Working Directly from Salesforce</h4>
+                        <p>Seamless integration without leaving Salesforce</p>
+                        <a href="https://hello.outreach.io/s/eeVMPa5a3BU" target="_blank">View Video →</a>
+                    </div>
+                </div>
+                
+                <h3>Platform Navigation & Core Workflows</h3>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <h4>📹 Platform Overview & Prospects Page Navigation</h4>
+                        <p>Navigating the platform and identifying prospects in Outreach to engage</p>
+                        <a href="https://hello.outreach.io/s/ylpCqrvaGO0" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Task Execution & AI-Powered Summaries</h4>
+                        <p>Calls, emails, LinkedIn and text tasks. Generate summaries of account activity and recordings</p>
+                        <a href="https://hello.outreach.io/s/pFtLVowMDHQ" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Automated Inbound Lead Flow</h4>
+                        <p>Automating inbound leads based on field changes in Salesforce</p>
+                        <a href="https://hello.outreach.io/s/YblLmL0rUX4" target="_blank">View Video →</a>
+                    </div>
+                </div>
+
+                <h3>Opportunity & Pipeline Management</h3>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <h4>📹 Customizable Opportunities Grid</h4>
+                        <p>How Outreach streamlines opportunity editing and visibility, giving teams more insight into opportunities with customizable views</p>
+                        <a href="https://hello.outreach.io/s/a4tM56sPXGY" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Real-Time Salesforce Updates</h4>
+                        <p>Why reps have no excuses to keep things in evaluating stage with Outreach pushing real-time updates back to Salesforce</p>
+                        <a href="https://hello.outreach.io/s/0VJBW6YdB3c" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Single Opportunity Deep Dive with AI Search</h4>
+                        <p>Looking into 1 opportunity to see all historical activity and using AI to ask questions/search through transcripts</p>
+                        <a href="https://hello.outreach.io/s/t1FPYKajMZc" target="_blank">View Video →</a>
+                    </div>
+                </div>
+
+                <h3>Conversation Intelligence</h3>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <h4>📹 Conversational Intelligence Overview</h4>
+                        <p>Looking at CINC's discovery call, AI summaries, coach cards</p>
+                        <a href="https://hello.outreach.io/s/Bo9G55g-zWQ" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 KAIA Library: Keyword Search Across All Calls</h4>
+                        <p>Using KAIA library to search aggregate of all calls (video and cold calls) to search for specific keywords — Salesloft cannot do this</p>
+                        <a href="https://hello.outreach.io/s/PsFKlLmTVdA" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Advanced CI: Topic Tracking & Playlists</h4>
+                        <p>Tracking topics, playlists, tracking mentions of "PRIME" product</p>
+                        <a href="https://hello.outreach.io/s/2DFKc6vYtuQ" target="_blank">View Video →</a>
+                    </div>
+                </div>
+
+                <h3>Reporting & Analytics</h3>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <h4>📹 Sequence Performance Report</h4>
+                        <p>Revenue attribution, what's working filters, etc.</p>
+                        <a href="https://hello.outreach.io/s/A5pAnZyBTRM" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Team Performance & Customizable Dashboards</h4>
+                        <p>Team performance dashboards and customization options</p>
+                        <a href="https://hello.outreach.io/s/m8VJCq3ClC4" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Pipeline Generation Report</h4>
+                        <p>Unique Outreach report showing which sequences drive pipeline</p>
+                        <a href="https://hello.outreach.io/s/Va1LgbT78BM" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Sales Execution Report</h4>
+                        <p>Compare teams, timeframes and users to analyze and replicate success</p>
+                        <a href="https://hello.outreach.io/s/VqJH6p6ik08" target="_blank">View Video →</a>
+                    </div>
+                </div>
+
+                <h3>Account Management</h3>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <h4>📹 Accounts Page: Context Aggregation & Risk Identification</h4>
+                        <p>Aggregating context and working through accounts, custom lists, finding risk in accounts</p>
+                        <a href="https://hello.outreach.io/s/vM1DI4LwJAA" target="_blank">View Video →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Single Account Historical Activity View</h4>
+                        <p>Looking into 1 account and its historical activity (CINC example)</p>
+                        <a href="https://hello.outreach.io/s/_shAQbFPKk0" target="_blank">View Video →</a>
+                    </div>
+                </div>
+
+                <h3>Integration Walkthroughs</h3>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <h4>📹 Outreach Outlook Integration</h4>
+                        <p>Walkthrough of Outlook integration capabilities</p>
+                        <a href="https://hello.outreach.io/kaia/share/JTdCJTIydiUyMiUzQSU3QiUyMnAlMjIlM0ElMjJWc01BbVR4bSUyMiUyQyUyMm0lMjIlM0ElMjI4ZjA5ZWQ1OS0wNGJhLTExZTYtOTQwYS0wMmM5YTY4N2MzM2IlM0F3cHJDSXN0TVIxU09sUjJlRW5tV2FnJTIyJTJDJTIyaSUyMiUzQSUyMjQ0NTAlMjIlN0QlN0Q=?" target="_blank">View Tour →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Using Outreach in Salesforce</h4>
+                        <p>Workflow demonstration within Salesforce</p>
+                        <a href="https://hello.outreach.io/kaia/share/JTdCJTIydiUyMiUzQSU3QiUyMnAlMjIlM0ElMjJOVkc2ejZ6SCUyMiUyQyUyMm0lMjIlM0ElMjI4ZjA5ZWQ1OS0wNGJhLTExZTYtOTQwYS0wMmM5YTY4N2MzM2IlM0FoTURwSE9aa1F5bXRPejkxMlNlaHRnJTIyJTJDJTIyaSUyMiUzQSUyMjkyMzUlMjIlN0QlN0Q=?" target="_blank">View Tour →</a>
+                    </div>
+                </div>
+
+                <h3>Product Tours</h3>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <h4>📹 Coach and Improve Product Tour</h4>
+                        <p>Conversation intelligence and coaching features</p>
+                        <a href="https://demo.outreach.io/share/0qpy7xvkpjps" target="_blank">View Tour →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Manage and Guide Deals</h4>
+                        <p>Deal management and pipeline features</p>
+                        <a href="https://demo.outreach.io/share/1denorams7k2" target="_blank">View Tour →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>📹 Prospect and Manage Accounts</h4>
+                        <p>Account management and prospecting capabilities</p>
+                        <a href="https://demo.outreach.io/share/5scrj0z8tps5" target="_blank">View Tour →</a>
+                    </div>
+                </div>
+
+                <h3>Support & Customer Success</h3>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <h4>📹 Outreach Customer Support & Live Chat</h4>
+                        <p>Customer support capabilities and live chat functionality</p>
+                        <a href="https://hello.outreach.io/s/BYxCQ5_37gw" target="_blank">View Video →</a>
+                    </div>
+                </div>
+
+                <h3>Client Services</h3>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <h4>📹 Client Services Demo - Full Recording</h4>
+                        <p>Complete Client Services demonstration</p>
+                        <a href="https://hello.outreach.io/api/mailings/click/5~2gCtU178yUb4ht7mDpGd2shrHpiAR4BFpcgt9cc39ZhZDKwCMqiHg9oVx9Nx3zppQngf8dhv5DtA9DipssNP79Jj7JYKvCrGnq4AcfvRDWp9BXqAuoB5eKsbmZ2CWQSnhZBZ7EGNE3QCaLt64rKFUX8Mjzgcoaw2KFTaGJJ1ubZ63Y7jf1EYqiTNbqciihhrXLwN" target="_blank">View Recording →</a>
+                    </div>
+                </div>
+
+                <h3>Full Demo Recordings</h3>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <h4>Initial Meeting</h4>
+                        <p>Recording of our initial conversation</p>
+                        <a href="https://hello.outreach.io/s/0gFM_aJxxa4" target="_blank">View Recording →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>Demo 1</h4>
+                        <p>Recording of our first demo session</p>
+                        <a href="https://hello.outreach.io/s/p3tLjrlCTzY" target="_blank">View Recording →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>Demo 2</h4>
+                        <p>Recording of our second demo session</p>
+                        <a href="https://hello.outreach.io/s/fahH8a2EgGo" target="_blank">View Recording →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>Demo 3</h4>
+                        <p>Recording of our third demo session</p>
+                        <a href="https://hello.outreach.io/s/neZAcbdeK90" target="_blank">View Recording →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>Client Services Initial Meeting</h4>
+                        <p>Recording of our Client Services discovery call</p>
+                        <a href="https://hello.outreach.io/s/6fFNIJKmxN8" target="_blank">View Recording →</a>
+                    </div>
+                </div>
+
+                <h3>Key Quotes Library</h3>
+                <div class="quote-box">
+                    "At this point we just know what we want and we know what we need and we know what we have that isn't serving us."
+                    <span class="quote-author">— Crysta Ostiguy</span>
+                </div>
+                <div class="quote-box">
+                    "It's a nightmare. Nothing gets done."
+                    <span class="quote-author">— Crysta Ostiguy on pipeline management</span>
+                </div>
+                <div class="quote-box">
+                    "They're just pinging through dials all day long with not a lot of structure... It's just embarrassing to say out loud."
+                    <span class="quote-author">— Danielle Garrett on account management</span>
+                </div>
+                <div class="quote-box">
+                    "We're very manual... truly grabbing those templates and filling in the blanks and manually sending them out."
+                    <span class="quote-author">— Chelsea Scott on implementation</span>
+                </div>
+                <div class="quote-box">
+                    "Watching a demo for an hour, I want to pull the remaining hair out."
+                    <span class="quote-author">— JB on CI limitations</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.nav-tab');
+            const sections = document.querySelectorAll('.content-section');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    tabs.forEach(t => t.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+                    
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+
+            // Stakeholder Accordion
+            window.toggleStakeholder = function(header) {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.toggle-icon');
+                
+                if (content.classList.contains('active')) {
+                    content.classList.remove('active');
+                    icon.textContent = '+';
+                    header.classList.remove('active');
+                } else {
+                    document.querySelectorAll('.stakeholder-content.active').forEach(item => {
+                        item.classList.remove('active');
+                        item.previousElementSibling.classList.remove('active');
+                        item.previousElementSibling.querySelector('.toggle-icon').textContent = '+';
+                    });
+                    
+                    content.classList.add('active');
+                    icon.textContent = '-';
+                    header.classList.add('active');
+                }
+            };
+        });
+    </script>
+</body>
+</html>
